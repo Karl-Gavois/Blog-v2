@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Red Phoenix - Se connecter{% endblock %}
+
+{% block body %}
+<div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700 absolcenter">
+    <form class="space-y-6" method="post">
+        {% if error %}
+        <div class="alert alert-danger colors.red-600">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+
+            <h5 class="dark:text-white">Vous êtes connecté en tant que : {{ app.user.userIdentifier }}</h5>
+            <button type="button" onclick='window.location.href="{{ path('app_logout') }}";' class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Se déconnecter</button>
+            <button type="button" onclick='window.location.href="{{ path('app_profile') }}";' class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Dashboard</button>
+        {% endif %}
+        <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white underline">Connectez-vous</h5>
+
+        <label class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class=" text-centerbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" autocomplete="email" required autofocus>
+
+        <label class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" autocomplete="current-password" required>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button class="text-center text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit">Se connecter</button>
+        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Pas encore inscrit ? <a href="{{ path('app_register') }}" class="text-blue-700 hover:underline dark:text-blue-500">Créez votre compte</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
