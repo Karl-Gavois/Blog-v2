@@ -6,28 +6,30 @@
     <h1 class="margtop-100">Register</h1>
 
     {{ form_errors(registrationForm) }}
-<div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700 absolcenter">
-    {{ form_start(registrationForm, {'attr': {'class': 'mt-4'}}) }}
-        <div class="mb-4">
-            {{ form_label(registrationForm.username, 'Username', {'class': 'block text-gray-700 font-bold mb-2'}) }}
-            {{ form_widget(registrationForm.username, {'attr': {'class': 'border rounded w-full py-2 px-3'}}) }}
-        </div>
-        <div class="mb-4">
-            {{ form_label(registrationForm.email, 'Email', {'class': 'block text-gray-700 font-bold mb-2'}) }}
-            {{ form_widget(registrationForm.email, {'attr': {'class': 'border rounded w-full py-2 px-3'}}) }}
-        </div>
-        <div class="mb-4">
-            {{ form_label(registrationForm.plainPassword, 'Password', {'class': 'block text-gray-700 font-bold mb-2'}) }}
-            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'border rounded w-full py-2 px-3'}}) }}
-        </div>
-        <div class="mb-4">
-            {{ form_label(registrationForm.agreeTerms, 'I agree to the terms', {'class': 'block text-gray-700 font-bold mb-2'}) }}
-            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-1'}}) }}
-        </div>
+        <div class="w-full dark:text-white font-medium text-center max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-900 dark:border-gray-700 absolcenter">
+            {{ form_start(registrationForm, {'attr': {'class': 'space-y-6'}}) }}
+            <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white underline">S'inscrire</h5>
+                <div>
+                    {{ form_label(registrationForm.username, 'Username', {'class': 'text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white'}) }}
 
-        <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Register
-        </button>
-    {{ form_end(registrationForm) }}
-</div>$
+                    {{ form_widget(registrationForm.username, {'attr': {'class': 'text-centerbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'}}) }}
+                </div>
+                <div>
+                    {{ form_label(registrationForm.email, 'Email', {'class': 'text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white'}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'text-centerbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'}}) }}
+                </div>
+                <div>
+                    {{ form_label(registrationForm.plainPassword, 'Password', {'class': 'text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white'}) }}
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'text-centerbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'}}) }}
+                </div>
+                <div>
+                    {{ form_label(registrationForm.agreeTerms, 'I agree to the terms', {'class': ''}) }}
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-1'}}) }}
+                </div>
+
+                <button type="submit" class="text-center text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                    Register
+                </button>
+            {{ form_end(registrationForm) }}
+        </div>$
 {% endblock %}
