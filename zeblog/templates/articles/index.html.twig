@@ -3,9 +3,9 @@
 {% block title %}Hello ArticlesController!{% endblock %}
 
 {% block body %}
-<section class="displayarticles">
+<section class="displayarticles contentmargin margtop-75">
     {% for articles in articles %} 
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 margtop-100">
+    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4">
         <img class="rounded-t-lg" src="{{ ('../images/articles/' ~ articles.getImageName) }}" alt="test" />
         <div class="p-5">                
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{articles.title}}</h5>
@@ -14,5 +14,5 @@
         </div>
     </div>
     {% endfor %}
-<section>
+</section>
 {% endblock %}
