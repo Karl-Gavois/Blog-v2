@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -32,6 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 50)]
     private ?string $username = null;
+
+    #[ORM\OneToMany(mappedBy: 'relUser', targetEntity: Comments::class)]
+    private Collection $RelCom;
+
+    public function __construct()
+    {
+        $this->RelCom = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,6 +121,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comments>
+     */
+    public function getRelCom(): Collection
+    {
+        return $this->RelCom;
+    }
+
+    public function addRelCom(Comments $relCom): static
+    {
+        if (!$this->RelCom->contains($relCom)) {
+            $this->RelCom->add($relCom);
+            $relCom->setRelUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelCom(Comments $relCom): static
+    {
+        if ($this->RelCom->removeElement($relCom)) {
+            // set the owning side to null (unless already changed)
+            if ($relCom->getRelUser() === $this) {
+                $relCom->setRelUser(null);
+            }
+        }
 
         return $this;
     }

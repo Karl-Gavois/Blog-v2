@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleHoverController!{% endblock %}
+
+{% block body %}
+<div class="precnext">
+    <button onclick="window.location.href='{{ path('app_article_hover', { 'id': articles.Id -1 }) }}';" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Article précédent</button>
+    <button onclick="window.location.href='{{ path('app_article_hover', { 'id': articles.Id +1 }) }}';" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Article suivant</button>
+</div>
+<div class="art">
+    <img class="imgart" src="{{ ('../images/articles/' ~ articles.getImageName) }}" alt="test" />
+    <h2 class="mb-2 text-4xl text-center font-bold tracking-tight text-gray-900 dark:text-white">{{articles.title}}</h2>
+    <p class="mb-3 text-xl font-normal text-center text-gray-900 dark:text-white">{{articles.description}}</p>
+</div>
+
+<section class="bg-white dark:bg-gray-900 py-8 lg:py-16">
+    <div class="max-w-2xl mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+        </div>
+    <form class="mb-6">
+        <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <label for="comment" class="sr-only">Your comment</label>
+            <textarea id="comment" rows="6"
+                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                placeholder="Votre commentaire ..." required></textarea>
+        </div>
+        <button type="submit" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Ajouter commentaire
+        </button>
+    </form>
+</section>
+{% endblock %}

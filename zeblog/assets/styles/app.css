@@ -20,10 +20,10 @@ body {
     justify-content: center;
 }
 .margtop-100{
-    margin-top:100px ;
+    padding-top:100px ;
 }
 .margtop-75{
-    margin-top: 75px;
+    padding-top: 75px;
 }
 .vertical-line{
     border-left: 2px solid #343d4a;
@@ -42,6 +42,28 @@ body {
     margin-left: 315px;
     margin-right: 315px;
 }
+.precnext{
+    margin-top: 75px;
+    width: 1280px;
+    margin-left: 320px;
+    margin-right: 320px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.precnext button{
+    margin-top:15px ;
+}
+.imgart{
+    align-self: center;
+    text-align: center;
+    max-height: 600px;
+    height: auto;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

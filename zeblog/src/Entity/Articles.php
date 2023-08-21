@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -36,6 +38,14 @@ class Articles
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'relArt', targetEntity: Comments::class)]
+    private Collection $relCom;
+
+    public function __construct()
+    {
+        $this->relCom = new ArrayCollection();
+    }
 
      
 // If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -118,6 +128,36 @@ class Articles
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comments>
+     */
+    public function getRelCom(): Collection
+    {
+        return $this->relCom;
+    }
+
+    public function addRelCom(Comments $relCom): static
+    {
+        if (!$this->relCom->contains($relCom)) {
+            $this->relCom->add($relCom);
+            $relCom->setRelArt($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelCom(Comments $relCom): static
+    {
+        if ($this->relCom->removeElement($relCom)) {
+            // set the owning side to null (unless already changed)
+            if ($relCom->getRelArt() === $this) {
+                $relCom->setRelArt(null);
+            }
+        }
 
         return $this;
     }
