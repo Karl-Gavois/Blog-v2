@@ -12,10 +12,6 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    {# <audio id="background-audio" controls loop class="margtop-100" muted>
-        <source src="{{ asset('./build/music/background_music.mp3') }}" type="audio/mpeg">
-        Votre navigateur ne supporte pas le lecteur audio.
-    </audio> #}
     <body class="dark:bg-gray-900">
         <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
@@ -35,6 +31,7 @@
                         <button type="button" onclick='window.location.href="{{ path('app_register') }}";' class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-2">S'inscrire</button>
                         <button type="button" onclick='window.location.href="{{ path('app_login') }}";'class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-2">Se connecter</button>
                     {% endif %}
+                    <button id="mute-button"> <i id="mute-icon" class="fa-solid fa-volume-high"></i> </button>
                     <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -60,6 +57,10 @@
         <span class="vertical-line absolute"></span>
         <span class="vertical-line2 absolute"></span>
         {% block body %}{% endblock %}
+        <audio id="background-audio" controls loop muted>
+            <source src="{{ asset('./build/music/background_music.mp3') }}" type="audio/mpeg">
+            Votre navigateur ne supporte pas le lecteur audio.
+        </audio>
         <footer>
             <p class="mt-4 bottom-0 absolute text-center text-xl font-semibold whitespace-nowrap dark:text-white absolcenter2">Copyright by p'tite pause là ?</p>
         </footer>

@@ -23,3 +23,19 @@ import './styles/app.css';
         console.error('Autoplay failed:', error);
       });
   });
+
+  const audioElement = document.getElementById('background-audio');
+  const muteButton = document.getElementById('mute-button');
+  const muteIcon = document.getElementById('mute-icon');
+  
+  muteButton.addEventListener('click', () => {
+      if (audioElement.muted) {
+          audioElement.muted = false;
+          muteIcon.className = 'fa-solid fa-volume-high';
+      } else {
+          audioElement.muted = true;
+          muteIcon.className = 'fa-solid fa-volume-xmark';
+      }
+      muteButton.removeChild(muteIcon); // Remove the old icon
+      muteButton.appendChild(muteIcon); // Add the updated icon back
+  });
